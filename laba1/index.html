@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru"> 
+<head>
+	<meta charset="utf-8">
+	<title>Квадратные уравнения</title>
+	<script type="text/javascript" src="app.js"></script>
+        <link rel="stylesheet" media="screen" href="main.css"> 
+        <link rel="shortcut icon" href="x2.jpg">
+</head>
+<body>
+	<div class="form">
+		<div id="container">
+			<h1> Коэффициенты </h1>
+			<div class="input-form">
+				<input type="text" placeholder="ax^2" id="a">
+			</div>
+			<div class="input-form">
+				<input type="text" placeholder="bx" id="b">
+			</div>
+			<div class="input-form">
+				<input type="text" placeholder="c" id="c">
+			</div>
+			<div class="input-form">
+				<input onclick="takeValues()" type="submit" value="Посчитать">
+			</div>
+		</div>
+		<div id="answers" style="display: none;">
+			<h1> Результат </h1>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function takeValues(){
+			let a = document.getElementById('a').value;
+			let b = document.getElementById('b').value;
+			let c = document.getElementById('c').value;
+
+			if (a == '' && b == '' && c == '' || c == '')
+				return;
+			let result = resolver(a, b, c);
+			console.log(result);
+
+			document.getElementById('container').style.display = 'none';
+			let container = document.getElementById('container');
+			document.getElementById('answers').style.display = 'block';
+			let answers = document.getElementById('answers');
+
+			answers.insertAdjacentHTML('beforeend', '<p class="alert">' + result.alert + '</p>');
+			answers.insertAdjacentHTML('beforeend', '<p class="result"> x1 = ' + result.x1 + '</p>');
+			if (result.x2)
+				answers.insertAdjacentHTML('beforeend', '<p class="result"> x2 = ' + result.x2 + '</p>');
+		}
+	</script>
+</body>
+</html>
